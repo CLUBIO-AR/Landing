@@ -27,8 +27,9 @@ export function Hero() {
           </h1>
 
           <p className="text-base md:text-lg text-gray leading-relaxed max-w-lg">
-            Cargás tus alumnos, conectás MercadoPago, y el sistema hace el resto.
-            Sin perseguir morosos. Sin planillas. Sin olvidarse de nadie.
+            CLUBIO es el sistema de gestión para gimnasios que carga tus alumnos,
+            conecta con MercadoPago y hace el resto. Sin perseguir morosos.
+            Sin planillas. Sin olvidarse de nadie.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

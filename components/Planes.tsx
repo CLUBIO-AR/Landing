@@ -78,8 +78,8 @@ export function Planes() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         <SectionHeading
           badge="Planes"
-          title="Simple. Sin sorpresas. Sin setup fee."
-          subtitle="Alumnos ilimitados en todos los planes."
+          title="Planes para gimnasios — sin sorpresas"
+          subtitle="Sin setup fee. Alumnos ilimitados en todos los planes."
         />
 
         <div className="flex items-center gap-3">

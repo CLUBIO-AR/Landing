@@ -30,7 +30,8 @@ export function ComoFunciona() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12">
         <SectionHeading
           badge="La solución"
-          title="Configurás en 15 minutos. Después no tocás nada."
+          title="Cobros automáticos para tu gimnasio en 4 pasos"
+          subtitle="Configurás en 15 minutos. Después no tocás nada."
         />
 
         <div className="flex flex-col md:flex-row md:items-stretch gap-4">

@@ -180,7 +180,7 @@ function FormSection({ children }: { children: React.ReactNode }) {
         <SectionHeading
           align="center"
           badge="Contacto"
-          title="Pedí tu demo"
+          title="Pedí una demo gratuita"
           subtitle="Te mostramos el sistema funcionando en vivo en 30 minutos. Sin compromiso."
         />
         {children}

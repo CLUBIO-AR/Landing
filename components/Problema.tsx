@@ -34,7 +34,7 @@ export function Problema() {
             $720.000 – $1.080.000 ARS
           </p>
           <p className="text-sm md:text-base text-gray">
-            perdidos por mes en un gym de 150 alumnos solo por morosidad evitable
+            perdidos por mes en un gimnasio de 150 alumnos solo por morosidad evitable
           </p>
         </div>
 
