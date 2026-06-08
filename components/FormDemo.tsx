@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { useForm, ValidationError } from "@formspree/react";
 import { Button } from "./ui/Button";
 import { SectionHeading } from "./ui/SectionHeading";
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID ?? "FORMSPREE_ID";
+// OJO: usar "www" — "clubio.com.ar" (apex) hace un 307 a "www" y los navegadores
+// bloquean los preflights de CORS que reciben un redirect.
+const CLUBIO_API_URL = process.env.NEXT_PUBLIC_CLUBIO_API_URL ?? "https://www.clubio.com.ar";
 
 const ALUMNOS_OPTIONS = ["<50", "50-100", "100-200", "200+"];
 const ORIGEN_OPTIONS = ["Instagram", "Recomendación", "Google", "Otro"];
@@ -31,9 +32,11 @@ const EMPTY_VALUES: FormValues = {
 const REQUIRED_FIELDS: Array<keyof FormValues> = ["nombre", "email", "telefono", "gym"];
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type SubmitState = "idle" | "submitting" | "succeeded" | "error";
+
 export function FormDemo() {
-  const [state, handleSubmit] = useForm(FORMSPREE_ID);
   const [values, setValues] = useState<FormValues>(EMPTY_VALUES);
+  const [state, setState] = useState<SubmitState>("idle");
   const [clientError, setClientError] = useState<string | null>(null);
 
   const handleChange = (
@@ -55,18 +58,42 @@ export function FormDemo() {
     return null;
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const validationMessage = validate();
     if (validationMessage) {
-      event.preventDefault();
       setClientError(validationMessage);
       return;
     }
     setClientError(null);
-    handleSubmit(event);
+    setState("submitting");
+
+    try {
+      const res = await fetch(`${CLUBIO_API_URL}/api/leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: values.nombre,
+          email: values.email,
+          telefono: values.telefono,
+          gym_nombre: values.gym || undefined,
+          cantidad_alumnos: values.alumnos || undefined,
+          como_nos_conocio: values.origen || undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        setState("error");
+        return;
+      }
+
+      setState("succeeded");
+    } catch {
+      setState("error");
+    }
   };
 
-  if (state.succeeded) {
+  if (state === "succeeded") {
     return (
       <FormSection>
         <div className="bg-card border border-green/40 rounded-card p-8 text-center max-w-xl mx-auto">
@@ -93,7 +120,6 @@ export function FormDemo() {
             onChange={handleChange}
             className={inputClass}
           />
-          <ValidationError prefix="Nombre" field="nombre" errors={state.errors} className={errorClass} />
         </Field>
 
         <Field label="Email" required>
@@ -105,7 +131,6 @@ export function FormDemo() {
             onChange={handleChange}
             className={inputClass}
           />
-          <ValidationError prefix="Email" field="email" errors={state.errors} className={errorClass} />
         </Field>
 
         <Field label="Teléfono / WhatsApp" required>
@@ -117,7 +142,6 @@ export function FormDemo() {
             onChange={handleChange}
             className={inputClass}
           />
-          <ValidationError prefix="Teléfono" field="telefono" errors={state.errors} className={errorClass} />
         </Field>
 
         <Field label="Nombre del gym" required>
@@ -129,7 +153,6 @@ export function FormDemo() {
             onChange={handleChange}
             className={inputClass}
           />
-          <ValidationError prefix="Gym" field="gym" errors={state.errors} className={errorClass} />
         </Field>
 
         <Field label="Cantidad aproximada de alumnos">
@@ -155,14 +178,14 @@ export function FormDemo() {
         </Field>
 
         {clientError && <p className={errorClass}>{clientError}</p>}
-        {state.errors && state.errors.getFormErrors().length > 0 && (
+        {state === "error" && (
           <p className={errorClass}>
             Algo salió mal. Escribinos a contacto@clubio.com.ar
           </p>
         )}
 
-        <Button type="submit" size="lg" disabled={state.submitting} className="w-full justify-center">
-          {state.submitting ? "Enviando..." : "Quiero mi demo →"}
+        <Button type="submit" size="lg" disabled={state === "submitting"} className="w-full justify-center">
+          {state === "submitting" ? "Enviando..." : "Quiero mi demo →"}
         </Button>
 
         <p className="text-sm text-gray text-center">
