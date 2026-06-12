@@ -15,7 +15,7 @@ const ITEMS = [
     title: "WhatsApp con 95% de tasa de apertura",
     badge: "95% de apertura",
     description:
-      "El email llega al 25% de los alumnos. El WhatsApp lo abre casi todo el mundo. El gym conecta su propio número, sin costos adicionales para CLUBIO.",
+      "El email llega al 25% de los alumnos. El WhatsApp lo abre casi todo el mundo. Disponible como add-on en todos los planes por +USD 8/mes.",
   },
   {
     number: "03",

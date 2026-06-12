@@ -106,18 +106,6 @@ const softwareApplicationSchema = {
     },
     {
       "@type": "Offer",
-      name: "Plan Plus",
-      price: "45",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "45",
-        priceCurrency: "USD",
-        unitText: "MONTH",
-      },
-    },
-    {
-      "@type": "Offer",
       name: "Plan Multi",
       price: "75",
       priceCurrency: "USD",

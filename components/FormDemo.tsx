@@ -4,9 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Button } from "./ui/Button";
 import { SectionHeading } from "./ui/SectionHeading";
 
-// OJO: usar "www" — "clubio.com.ar" (apex) hace un 307 a "www" y los navegadores
-// bloquean los preflights de CORS que reciben un redirect.
-const CLUBIO_API_URL = process.env.NEXT_PUBLIC_CLUBIO_API_URL ?? "https://www.clubio.com.ar";
+const CLUBIO_API_URL = process.env.NEXT_PUBLIC_CLUBIO_API_URL || "https://app.clubio.com.ar";
 
 const ALUMNOS_OPTIONS = ["<50", "50-100", "100-200", "200+"];
 const ORIGEN_OPTIONS = ["Instagram", "Recomendación", "Google", "Otro"];
