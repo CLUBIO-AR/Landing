@@ -69,7 +69,7 @@ function DashboardMockup() {
     <div className="hidden lg:block relative">
       <div className="bg-card border border-border rounded-card shadow-card p-6">
         <div className="flex items-center justify-between mb-6">
-          <span className="text-sm font-semibold text-gray-lt">Dashboard · Junio 2026</span>
+          <span className="text-sm font-semibold text-gray-lt">Dashboard</span>
           <span className="inline-flex items-center gap-1.5 text-xs text-green">
             <span className="w-1.5 h-1.5 rounded-full bg-green" />
             En vivo

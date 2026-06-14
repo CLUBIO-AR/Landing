@@ -49,8 +49,8 @@ Esta es la primera impresión del producto. Core Web Vitals críticos:
 - Sin scripts de terceros bloqueantes
 
 ## Variables de entorno
-- `NEXT_PUBLIC_CLUBIO_API_URL` — URL de la API de Clubio (default: `https://www.clubio.com.ar`)
-- Usar siempre "www" — el apex hace redirect 307 que rompe CORS en preflights del formulario
+- `NEXT_PUBLIC_CLUBIO_API_URL` — URL de la API de Clubio (default: `https://app.clubio.com.ar`)
+- Usar siempre `app.clubio.com.ar` — el apex (`clubio.com.ar`) hace redirect 307 que rompe CORS en preflights del formulario
 
 ## Reportes de revisión
 `.claude/reports/review-[YYYY-MM-DD]-[HH-MM].md`

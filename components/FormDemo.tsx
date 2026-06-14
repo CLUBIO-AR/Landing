@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { Button } from "./ui/Button";
 import { SectionHeading } from "./ui/SectionHeading";
 
@@ -8,6 +8,7 @@ const CLUBIO_API_URL = process.env.NEXT_PUBLIC_CLUBIO_API_URL || "https://app.cl
 
 const ALUMNOS_OPTIONS = ["<50", "50-100", "100-200", "200+"];
 const ORIGEN_OPTIONS = ["Instagram", "Recomendación", "Google", "Otro"];
+const PHONE_PATTERN = /^[+\d][\d\s\-()+.]*$/;
 
 interface FormValues {
   nombre: string;
@@ -16,6 +17,7 @@ interface FormValues {
   gym: string;
   alumnos: string;
   origen: string;
+  website: string; // honeypot — debe quedar vacío
 }
 
 const EMPTY_VALUES: FormValues = {
@@ -25,6 +27,7 @@ const EMPTY_VALUES: FormValues = {
   gym: "",
   alumnos: "",
   origen: "",
+  website: "",
 };
 
 const REQUIRED_FIELDS: Array<keyof FormValues> = ["nombre", "email", "telefono", "gym"];
@@ -36,12 +39,14 @@ export function FormDemo() {
   const [values, setValues] = useState<FormValues>(EMPTY_VALUES);
   const [state, setState] = useState<SubmitState>("idle");
   const [clientError, setClientError] = useState<string | null>(null);
+  const submittingRef = useRef(false);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
     setValues((prev) => ({ ...prev, [name]: value }));
+    if (state === "error") setState("idle");
   };
 
   const validate = (): string | null => {
@@ -50,20 +55,36 @@ export function FormDemo() {
         return "Completá todos los campos obligatorios.";
       }
     }
-    if (!EMAIL_PATTERN.test(values.email)) {
+    if (values.nombre.length > 100 || values.gym.length > 100) {
+      return "El nombre o el gym superan el máximo de 100 caracteres.";
+    }
+    if (!EMAIL_PATTERN.test(values.email) || values.email.length > 254) {
       return "Ingresá un email válido.";
+    }
+    const phoneDigits = values.telefono.replace(/\D/g, "");
+    if (phoneDigits.length < 6 || !PHONE_PATTERN.test(values.telefono.trim())) {
+      return "Ingresá un teléfono válido (ej: +54 9 11 1234-5678).";
     }
     return null;
   };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submittingRef.current) return;
+
+    // honeypot: bots rellenan el campo oculto "website", usuarios reales no
+    if (values.website) {
+      setState("succeeded");
+      return;
+    }
+
     const validationMessage = validate();
     if (validationMessage) {
       setClientError(validationMessage);
       return;
     }
     setClientError(null);
+    submittingRef.current = true;
     setState("submitting");
 
     try {
@@ -88,6 +109,8 @@ export function FormDemo() {
       setState("succeeded");
     } catch {
       setState("error");
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -109,11 +132,24 @@ export function FormDemo() {
         onSubmit={onSubmit}
         className="bg-card border border-border rounded-card p-6 md:p-8 flex flex-col gap-5 max-w-xl mx-auto w-full"
       >
+        {/* honeypot: invisible para usuarios reales, bots lo completan */}
+        <input
+          type="text"
+          name="website"
+          value={values.website}
+          onChange={handleChange}
+          tabIndex={-1}
+          aria-hidden="true"
+          autoComplete="off"
+          style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
+        />
+
         <Field label="Nombre completo" required>
           <input
             type="text"
             name="nombre"
             required
+            maxLength={100}
             value={values.nombre}
             onChange={handleChange}
             className={inputClass}
@@ -125,6 +161,7 @@ export function FormDemo() {
             type="email"
             name="email"
             required
+            maxLength={254}
             value={values.email}
             onChange={handleChange}
             className={inputClass}
@@ -136,6 +173,7 @@ export function FormDemo() {
             type="tel"
             name="telefono"
             required
+            maxLength={20}
             value={values.telefono}
             onChange={handleChange}
             className={inputClass}
@@ -147,6 +185,7 @@ export function FormDemo() {
             type="text"
             name="gym"
             required
+            maxLength={100}
             value={values.gym}
             onChange={handleChange}
             className={inputClass}

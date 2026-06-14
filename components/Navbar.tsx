@@ -85,6 +85,8 @@ export function Navbar() {
         <button
           className="md:hidden text-white"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
           onClick={() => setOpen((prev) => !prev)}
         >
           {open ? <X size={24} /> : <Menu size={24} />}
@@ -92,7 +94,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-dark/95 backdrop-blur-md border-b border-border px-4 sm:px-6 py-4 flex flex-col gap-4">
+        <div id="mobile-menu" className="md:hidden bg-dark/95 backdrop-blur-md border-b border-border px-4 sm:px-6 py-4 flex flex-col gap-4">
           {LINKS.map((link) => (
             <button
               key={link.id}

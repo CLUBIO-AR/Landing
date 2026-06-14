@@ -1,7 +1,4 @@
-"use client";
-
 import { Logo } from "./Logo";
-import { scrollToSection } from "@/lib/scrollToSection";
 
 const LINKS = [
   { id: "como-funciona", label: "Cómo funciona" },
@@ -20,13 +17,13 @@ export function Footer() {
 
         <nav className="flex flex-wrap gap-6">
           {LINKS.map((link) => (
-            <button
+            <a
               key={link.id}
-              onClick={() => scrollToSection(link.id)}
+              href={`#${link.id}`}
               className="text-sm text-gray-lt hover:text-white transition-colors"
             >
               {link.label}
-            </button>
+            </a>
           ))}
         </nav>
 
