@@ -13,20 +13,21 @@ Incluye información de planes, formulario de contacto y flujo hacia el onboardi
 
 ## Stack
 - Next.js (App Router, TypeScript)
-- Supabase (solo para almacenar leads — sin Auth compleja)
 - Vercel (hosting)
+- Clubio API (`/api/leads`) para almacenar leads
 
 ## Planes activos — CRÍTICO
 Los precios y planes mostrados en la landing DEBEN ser consistentes con el producto real:
-- **Basic**: USD 28/mes — 1 sede, 3 admins, sin WhatsApp
-- **Multi**: USD 75/mes — 5 sedes, 10 admins, con WhatsApp
+- **Basic**: USD 28/mes — 1 sede, 3 admins
+- **Multi**: USD 75/mes — 5 sedes, 10 admins
+- **WhatsApp**: add-on +USD 8/mes, disponible en todos los planes
 - Plan 'plus' ELIMINADO junio 2026 — NO debe aparecer en ningún lugar
 - Plan 'Pro' NO EXISTE todavía — si aparece en UI debe quedar como "Próximamente" sin precio
 - Sin setup fee en ningún plan
 - Alumnos ILIMITADOS en todos los planes
 
 ## Flujos críticos
-1. **Captación de lead**: visitante completa formulario → se almacena en Supabase → notificación interna
+1. **Captación de lead**: visitante completa formulario → POST a `{CLUBIO_API_URL}/api/leads` → Clubio procesa el lead
 2. **Información de planes**: visitante ve precios y features → decide contactar
 
 ## Reglas de negocio invariantes
@@ -36,8 +37,9 @@ Los precios y planes mostrados en la landing DEBEN ser consistentes con el produ
 
 ## Consideraciones de seguridad específicas
 - Sin autenticación compleja: solo formularios públicos
-- `SUPABASE_SERVICE_ROLE_KEY` nunca expuesta (solo anon key necesaria)
-- Leads almacenados con RLS básico (inserción pública, lectura protegida)
+- Headers de seguridad configurados en `next.config.ts` (X-Frame-Options, X-Content-Type-Options, X-XSS-Protection, Referrer-Policy)
+- Caché inmutable configurado para assets estáticos (`max-age=31536000, immutable`)
+- Rate limiting o captcha en el formulario para evitar spam
 
 ## Performance — prioridad alta
 Esta es la primera impresión del producto. Core Web Vitals críticos:
@@ -47,9 +49,8 @@ Esta es la primera impresión del producto. Core Web Vitals críticos:
 - Sin scripts de terceros bloqueantes
 
 ## Variables de entorno
-- `NEXT_PUBLIC_SUPABASE_URL` (pública)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` (pública)
-- `SUPABASE_SERVICE_ROLE_KEY` (solo server-side si se necesita)
+- `NEXT_PUBLIC_CLUBIO_API_URL` — URL de la API de Clubio (default: `https://www.clubio.com.ar`)
+- Usar siempre "www" — el apex hace redirect 307 que rompe CORS en preflights del formulario
 
 ## Reportes de revisión
 `.claude/reports/review-[YYYY-MM-DD]-[HH-MM].md`
