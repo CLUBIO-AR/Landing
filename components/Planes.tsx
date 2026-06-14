@@ -1,11 +1,8 @@
-"use client";
-
 import { Check, Clock } from "lucide-react";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
 import { Card } from "./ui/Card";
 import { SectionHeading } from "./ui/SectionHeading";
-import { scrollToSection } from "@/lib/scrollToSection";
 
 interface Plan {
   name: string;
@@ -13,6 +10,7 @@ interface Plan {
   price: number | null;
   features: string[];
   cta: string;
+  ctaHref: string;
   highlighted?: boolean;
   comingSoon?: boolean;
 }
@@ -22,6 +20,7 @@ const PLANS: Plan[] = [
     name: "Basic",
     tagline: "Para el gym que quiere empezar a cobrar sin complicaciones",
     price: 28,
+    ctaHref: "#demo",
     features: [
       "Alumnos ilimitados",
       "1 sede · Hasta 3 admins",
@@ -36,6 +35,7 @@ const PLANS: Plan[] = [
     name: "Multi",
     tagline: "Para cadenas y gyms con varias sedes o equipo grande",
     price: 75,
+    ctaHref: "#demo",
     features: [
       "Alumnos ilimitados",
       "Hasta 5 sedes · Hasta 10 admins",
@@ -52,6 +52,7 @@ const PLANS: Plan[] = [
     name: "Pro",
     tagline: "Portal del alumno, clases, profesores y más",
     price: null,
+    ctaHref: "mailto:contacto@clubio.com.ar?subject=Quiero%20saber%20sobre%20el%20Plan%20Pro",
     features: [
       "Alumnos ilimitados",
       "Portal del alumno",
@@ -119,7 +120,7 @@ export function Planes() {
               <Button
                 variant={plan.highlighted ? "primary" : "outline"}
                 className="w-full justify-center"
-                onClick={() => scrollToSection("demo")}
+                href={plan.ctaHref}
               >
                 {plan.cta}
               </Button>

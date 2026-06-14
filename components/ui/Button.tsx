@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 
 type Variant = "primary" | "outline" | "ghost";
 type Size = "sm" | "md" | "lg";
@@ -16,11 +16,16 @@ const sizes: Record<Size, string> = {
   lg: "px-8 py-4 text-lg",
 };
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type BaseProps = {
   children: ReactNode;
   variant?: Variant;
   size?: Size;
-}
+  className?: string;
+};
+
+type ButtonAsButton = BaseProps & ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+type ButtonAsAnchor = BaseProps & AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+type ButtonProps = ButtonAsButton | ButtonAsAnchor;
 
 export function Button({
   children,
@@ -29,11 +34,19 @@ export function Button({
   className = "",
   ...props
 }: ButtonProps) {
+  const classes = `inline-flex items-center justify-center gap-2 font-semibold rounded-btn transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`;
+
+  if ("href" in props && props.href !== undefined) {
+    const { href, ...rest } = props as ButtonAsAnchor;
+    return (
+      <a href={href} className={classes} {...rest}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button
-      className={`inline-flex items-center justify-center gap-2 font-semibold rounded-btn transition-all duration-200 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed ${variants[variant]} ${sizes[size]} ${className}`}
-      {...props}
-    >
+    <button className={classes} {...(props as ButtonHTMLAttributes<HTMLButtonElement>)}>
       {children}
     </button>
   );

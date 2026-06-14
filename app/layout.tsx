@@ -82,6 +82,7 @@ export const metadata: Metadata = {
   },
 };
 
+// schema estático — no inyectar valores dinámicos aquí o se abre XSS vía dangerouslySetInnerHTML
 const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",

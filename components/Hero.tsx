@@ -1,9 +1,6 @@
-"use client";
-
 import { Check } from "lucide-react";
 import { Badge } from "./ui/Badge";
 import { Button } from "./ui/Button";
-import { scrollToSection } from "@/lib/scrollToSection";
 
 const PILLS = ["Sin setup fee", "Sin contrato", "Alumnos ilimitados"];
 
@@ -33,14 +30,10 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" onClick={() => scrollToSection("demo")}>
+            <Button size="lg" href="#demo">
               Pedí una demo →
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => scrollToSection("como-funciona")}
-            >
+            <Button size="lg" variant="outline" href="#como-funciona">
               Ver cómo funciona
             </Button>
           </div>
