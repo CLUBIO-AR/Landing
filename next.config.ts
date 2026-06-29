@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const nextConfig: NextConfig = {
   compress: true,
 
@@ -17,10 +19,12 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline'",
+              // unsafe-eval solo en dev — React/Turbopack lo requiere para debugging
+              `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: https:",
               "font-src 'self'",
+              "media-src 'self'",
               "connect-src 'self' https://app.clubio.com.ar",
               "frame-ancestors 'none'",
             ].join("; "),

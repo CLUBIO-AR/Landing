@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Problema } from "@/components/Problema";
 import { ComoFunciona } from "@/components/ComoFunciona";
+import { DemoVideo } from "@/components/DemoVideo";
 import { Diferenciadores } from "@/components/Diferenciadores";
 import { Planes } from "@/components/Planes";
 import { FormDemo } from "@/components/FormDemo";
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <Problema />
         <ComoFunciona />
+        <DemoVideo />
         <Diferenciadores />
         <Planes />
         <FormDemo />
