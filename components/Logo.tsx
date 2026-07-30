@@ -10,9 +10,8 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   return (
     <div className={`flex items-center gap-2.5 ${wrapper}`}>
       <svg viewBox="0 0 40 40" className="h-full w-auto" fill="none" aria-hidden="true">
-        <polygon points="20,2 35,10 35,30 20,38 5,30 5,10" fill="#22C55E" />
-        <polygon points="20,6 32,13 32,27 20,34 8,27 8,13" fill="#16A34A" />
-        <path d="M22 8L13 21H20L18 32L27 19H20L22 8Z" fill="white" />
+        <circle cx="20" cy="20" r="20" fill="#7C3AED" />
+        <path d="M13 12v11a7 7 0 0 0 14 0V12" stroke="#D7FF3D" strokeWidth="5" strokeLinecap="round" fill="none" />
       </svg>
       <span className={`font-bold text-white tracking-tight font-sans ${text}`}>
         CLUB<span className="text-green">IO</span>

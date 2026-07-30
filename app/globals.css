@@ -1,21 +1,34 @@
 @import "tailwindcss";
 
+/*
+ * Paleta CLUBIO — fondo blanco, acentos violeta/lima.
+ * Los nombres de variable (--color-dark, --color-white, --color-green*) se
+ * mantienen por compatibilidad con las clases ya usadas en los componentes
+ * (bg-dark, text-white, bg-green, etc.) aunque ahora representan lo opuesto
+ * de sus nombres originales — ver comentario en cada línea.
+ * NOTA: hex tomados a ojo de las piezas de marca, confirmar contra el brand
+ * book / Figma antes de un rollout final.
+ */
 :root {
   /* Fondos */
-  --color-dark: #111827;
-  --color-darker: #0d1117;
-  --color-card: #1f2937;
-  --color-border: #374151;
+  --color-dark: #ffffff;     /* fondo general / texto sobre botón acento */
+  --color-darker: #f7f5fc;   /* fondo de secciones alternas, footer */
+  --color-card: #ffffff;
+  --color-border: #e4e0f1;
 
-  /* Acento */
-  --color-green: #22c55e;
-  --color-green-dk: #16a34a;
-  --color-green-lt: #86efac;
+  /* Acento — violeta CLUBIO */
+  --color-green: #7c3aed;
+  --color-green-dk: #5b21b6;
+  --color-green-lt: #6d28d9;
+
+  /* Segundo acento de marca — usar solo como fondo con texto oscuro encima */
+  --color-lime: #d7ff3d;
+  --color-lime-text: #16112b;
 
   /* Texto */
-  --color-white: #ffffff;
-  --color-gray-lt: #e5e7eb;
-  --color-gray: #9ca3af;
+  --color-white: #16112b;    /* texto principal, casi negro con tinte violeta */
+  --color-gray-lt: #4b4560;
+  --color-gray: #6b647f;
 
   /* Espaciado de secciones */
   --section-py: 96px;
@@ -30,21 +43,23 @@
   --color-green: var(--color-green);
   --color-green-dk: var(--color-green-dk);
   --color-green-lt: var(--color-green-lt);
+  --color-lime: var(--color-lime);
+  --color-lime-text: var(--color-lime-text);
   --color-white: var(--color-white);
   --color-gray-lt: var(--color-gray-lt);
   --color-gray: var(--color-gray);
 
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --font-display: Georgia, "Times New Roman", serif;
+  --font-display: var(--font-fredoka), system-ui, sans-serif;
 
   --radius-card: 12px;
   --radius-btn: 8px;
   --radius-pill: 9999px;
 
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.25);
-  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.35);
-  --shadow-green-glow: 0 0 20px rgba(34, 197, 94, 0.3);
+  --shadow-card: 0 4px 24px rgba(22, 17, 43, 0.08);
+  --shadow-card-hover: 0 8px 32px rgba(22, 17, 43, 0.12);
+  --shadow-green-glow: 0 0 20px rgba(124, 58, 237, 0.3);
 }
 
 html {

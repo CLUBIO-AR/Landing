@@ -10,8 +10,11 @@ export function DemoVideo() {
 
   const handlePlay = () => {
     if (!videoRef.current) return;
-    videoRef.current.play();
-    setPlaying(true);
+    videoRef.current.play().then(() => {
+      setPlaying(true);
+    }).catch(() => {
+      setPlaying(false);
+    });
   };
 
   return (
