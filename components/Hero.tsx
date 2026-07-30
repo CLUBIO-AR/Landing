@@ -64,7 +64,7 @@ function DashboardMockup() {
         <div className="flex items-center justify-between mb-6">
           <span className="text-sm font-semibold text-gray-lt">Dashboard</span>
           <span className="inline-flex items-center gap-1.5 text-xs text-green">
-            <span className="w-1.5 h-1.5 rounded-full bg-green" />
+            <span className="w-1.5 h-1.5 rounded-full bg-lime" />
             En vivo
           </span>
         </div>
@@ -88,7 +88,7 @@ function DashboardMockup() {
               <span className="text-sm text-gray-lt">{row.name}</span>
               <span
                 className={`text-xs font-semibold px-2 py-1 rounded-pill ${
-                  row.ok ? "bg-green/15 text-green-lt" : "bg-border text-gray"
+                  row.ok ? "bg-lime text-lime-text" : "bg-border text-gray"
                 }`}
               >
                 {row.status}

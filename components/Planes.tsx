@@ -85,7 +85,7 @@ export function Planes() {
               } ${plan.comingSoon ? "opacity-60" : ""}`}
             >
               <div className="flex flex-col gap-2">
-                {plan.highlighted && <Badge>Más elegido</Badge>}
+                {plan.highlighted && <Badge variant="lime">Más elegido</Badge>}
                 {plan.comingSoon && <Badge variant="gray">Próximamente</Badge>}
                 <h3 className="text-xl font-bold uppercase tracking-wide">{plan.name}</h3>
                 <p className="text-sm text-gray">{plan.tagline}</p>

@@ -10,10 +10,10 @@
  * book / Figma antes de un rollout final.
  */
 :root {
-  /* Fondos */
-  --color-dark: #ffffff;     /* fondo general / texto sobre botón acento */
-  --color-darker: #f7f5fc;   /* fondo de secciones alternas, footer */
-  --color-card: #ffffff;
+  /* Fondos — blanco suavizado, no blanco puro (menos contraste duro) */
+  --color-dark: #f7f6fb;     /* fondo general / texto sobre botón acento */
+  --color-darker: #f0edf8;   /* fondo de secciones alternas, footer — un paso más oscuro que --color-dark */
+  --color-card: #ffffff;     /* cards — blanco puro, se despegan del fondo */
   --color-border: #e4e0f1;
 
   /* Acento — violeta CLUBIO */
