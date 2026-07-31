@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fredoka } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,11 +13,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Fredoka — tipografía redondeada de marca, usada en títulos (font-display)
-const fredoka = Fredoka({
+// Avenir Next Pro — texto general, subtítulos (regular + bold/black)
+const avenir = localFont({
+  variable: "--font-avenir",
+  src: [
+    { path: "./fonts/AvenirNextLTPro-Regular.otf", weight: "400", style: "normal" },
+    { path: "./fonts/AvenirNextLTPro-Bold.otf",     weight: "700", style: "normal" },
+  ],
+  display: "swap",
+});
+
+// Gilroy (Black) — títulos en mayúscula. El nombre de variable --font-fredoka se
+// mantiene por compatibilidad: font-display ya apunta a esa variable en varios
+// componentes, y redefinir qué tipografía carga evita tocar cada uno.
+const fredoka = localFont({
   variable: "--font-fredoka",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  src: [{ path: "./fonts/Gilroy-Black.ttf", weight: "900", style: "normal" }],
+  display: "swap",
+});
+
+// Povlar — SOLO para el wordmark "clubio" en minúscula (logo).
+const povlar = localFont({
+  variable: "--font-povlar",
+  src: [{ path: "./fonts/Povlar-Demo.ttf", weight: "400", style: "normal" }],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -140,7 +160,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-AR" className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable}`}>
+    <html lang="es-AR" className={`${geistSans.variable} ${geistMono.variable} ${fredoka.variable} ${avenir.variable} ${povlar.variable}`}>
       <body className="bg-dark text-white antialiased">
         {children}
         <script

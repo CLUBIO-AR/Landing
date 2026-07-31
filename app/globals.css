@@ -49,9 +49,10 @@
   --color-gray-lt: var(--color-gray-lt);
   --color-gray: var(--color-gray);
 
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-avenir), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
   --font-display: var(--font-fredoka), system-ui, sans-serif;
+  --font-logo: var(--font-povlar), system-ui, sans-serif;
 
   --radius-card: 12px;
   --radius-btn: 8px;
@@ -71,6 +72,17 @@ body {
   color: var(--color-white);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Títulos: Gilroy en mayúscula */
+h1, h2, h3, .font-display {
+  text-transform: uppercase;
+}
+
+/* Wordmark "clubio" — SOLO Povlar, siempre en minúscula */
+.logo-wordmark {
+  font-family: var(--font-logo), system-ui, sans-serif;
+  text-transform: lowercase;
 }
 
 ::-webkit-scrollbar {

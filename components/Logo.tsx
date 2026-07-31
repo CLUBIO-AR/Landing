@@ -12,7 +12,7 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   return (
     <div className={`flex items-center gap-2.5 ${wrapper}`}>
       <Image src="/icon.png" alt="" width={40} height={40} className="h-full w-auto rounded-[22%]" aria-hidden="true" />
-      <span className={`font-bold text-white tracking-tight font-sans ${text}`}>
+      <span className={`logo-wordmark text-white tracking-tight ${text}`}>
         CLUB<span className="text-green">IO</span>
       </span>
     </div>
