@@ -19,7 +19,7 @@ export function Footer() {
           {LINKS.map((link) => (
             <a
               key={link.id}
-              href={`#${link.id}`}
+              href={`/#${link.id}`}
               className="text-sm text-gray-lt hover:text-white transition-colors"
             >
               {link.label}
@@ -30,6 +30,9 @@ export function Footer() {
         <div className="flex flex-col gap-1 text-sm text-gray md:items-end">
           <a href="mailto:contacto@clubio.com.ar" className="text-gray-lt hover:text-white transition-colors">
             contacto@clubio.com.ar
+          </a>
+          <a href="/privacidad" className="text-gray-lt hover:text-white transition-colors">
+            Política de privacidad
           </a>
           <p>© 2026 CLUBIO · Sistema de gestión para gimnasios</p>
         </div>
