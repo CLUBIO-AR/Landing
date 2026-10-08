@@ -22,7 +22,7 @@ const FUNCIONES: Funcion[] = [
     title: "Avisos de cuota por WhatsApp",
     text: "Antes del vencimiento a cada alumno le llega un mensaje con su cuota y cómo pagarla. Si no paga, le sigue avisando por vos.",
     bullets: [
-      "Desde el WhatsApp de tu negocio",
+      "Salen solos, sin que mandes nada a mano",
       "Con botón de MercadoPago o tu alias para transferir",
       "Cuando paga con MercadoPago, le llega la confirmación",
     ],
