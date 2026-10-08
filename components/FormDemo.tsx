@@ -7,6 +7,7 @@ import { SectionHeading } from "./ui/SectionHeading";
 const CLUBIO_API_URL = process.env.NEXT_PUBLIC_CLUBIO_API_URL || "https://app.clubio.com.ar";
 
 const ALUMNOS_OPTIONS = ["<50", "50-100", "100-200", "200+"];
+const RUBRO_OPTIONS = ["Gimnasio o box", "Profe o entrenador/a", "Escuela o academia", "Club", "Otro"];
 const ORIGEN_OPTIONS = ["Instagram", "Recomendación", "Google", "Otro"];
 const PHONE_PATTERN = /^[+\d][\d\s\-()+.]*$/;
 
@@ -15,6 +16,7 @@ interface FormValues {
   email: string;
   telefono: string;
   gym: string;
+  rubro: string;
   alumnos: string;
   origen: string;
   website: string; // honeypot — debe quedar vacío
@@ -25,12 +27,13 @@ const EMPTY_VALUES: FormValues = {
   email: "",
   telefono: "",
   gym: "",
+  rubro: "",
   alumnos: "",
   origen: "",
   website: "",
 };
 
-const REQUIRED_FIELDS: Array<keyof FormValues> = ["nombre", "email", "telefono", "gym"];
+const REQUIRED_FIELDS: Array<keyof FormValues> = ["nombre", "email", "telefono", "gym", "rubro"];
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type SubmitState = "idle" | "submitting" | "succeeded" | "error";
@@ -56,7 +59,7 @@ export function FormDemo() {
       }
     }
     if (values.nombre.length > 100 || values.gym.length > 100) {
-      return "El nombre o el gym superan el máximo de 100 caracteres.";
+      return "El nombre o el de tu negocio superan el máximo de 100 caracteres.";
     }
     if (!EMAIL_PATTERN.test(values.email) || values.email.length > 254) {
       return "Ingresá un email válido.";
@@ -95,7 +98,8 @@ export function FormDemo() {
           nombre: values.nombre,
           email: values.email,
           telefono: values.telefono,
-          gym_nombre: values.gym || undefined,
+          // La API de leads todavía no tiene campo "rubro": viaja dentro de gym_nombre.
+          gym_nombre: `${values.gym.trim()} (${values.rubro})`,
           cantidad_alumnos: values.alumnos || undefined,
           como_nos_conocio: values.origen || undefined,
         }),
@@ -119,7 +123,7 @@ export function FormDemo() {
       <FormSection>
         <div className="bg-card border border-green/40 rounded-card p-8 text-center max-w-xl mx-auto">
           <p className="text-lg font-semibold text-green-lt">
-            ¡Listo! Te contactamos en las próximas horas.
+            Listo, recibimos tu pedido. Te escribimos por WhatsApp dentro de las 24 horas.
           </p>
         </div>
       </FormSection>
@@ -180,7 +184,18 @@ export function FormDemo() {
           />
         </Field>
 
-        <Field label="Nombre del gym" required>
+        <Field label="¿A qué te dedicás?" required>
+          <select name="rubro" required value={values.rubro} onChange={handleChange} className={inputClass}>
+            <option value="">Seleccioná una opción</option>
+            {RUBRO_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </Field>
+
+        <Field label="Nombre de tu gym, estudio o escuela (o el tuyo si trabajás solo/a)" required>
           <input
             type="text"
             name="gym"
@@ -222,7 +237,7 @@ export function FormDemo() {
         )}
 
         <Button type="submit" size="lg" disabled={state === "submitting"} className="w-full justify-center">
-          {state === "submitting" ? "Enviando..." : "Quiero mi demo →"}
+          {state === "submitting" ? "Enviando..." : "Pedir demo"}
         </Button>
 
         <p className="text-sm text-gray text-center">
@@ -235,13 +250,12 @@ export function FormDemo() {
 
 function FormSection({ children }: { children: React.ReactNode }) {
   return (
-    <section id="demo" className="bg-darker py-16 md:py-24">
+    <section id="demo" className="bg-dark py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-12 items-center">
         <SectionHeading
           align="center"
-          badge="Contacto"
-          title="Pedí una demo gratuita"
-          subtitle="Te mostramos el sistema funcionando en vivo en 30 minutos. Sin compromiso."
+          title="Pedí tu demo gratis"
+          subtitle="Te mostramos CLUBIO funcionando en 30 minutos y te pasamos el precio para tu caso. Sin compromiso."
         />
         {children}
       </div>
@@ -270,6 +284,6 @@ function Field({
 }
 
 const inputClass =
-  "bg-dark border border-border rounded-btn px-4 py-2.5 text-sm text-white placeholder:text-gray focus:outline-none focus:border-green transition-colors";
+  "bg-dark border border-border rounded-btn px-4 py-2.5 text-sm text-white placeholder:text-gray focus:outline-none focus:border-green focus:ring-2 focus:ring-green/30 transition-colors";
 
 const errorClass = "text-sm text-red-400";

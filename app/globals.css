@@ -30,6 +30,14 @@
   --color-gray-lt: #4b4560;
   --color-gray: #6b647f;
 
+  /* Superficie oscura (sección "Para quién", marco del celular) y su texto */
+  --color-ink: #16112b;
+  --color-on-ink: #f7f6fb;
+
+  /* Chat de WhatsApp en los mockups */
+  --color-chat: #ece8f6;
+  --color-bubble: #ecffa8;
+
   /* Espaciado de secciones */
   --section-py: 96px;
   --section-py-mobile: 64px;
@@ -48,6 +56,14 @@
   --color-white: var(--color-white);
   --color-gray-lt: var(--color-gray-lt);
   --color-gray: var(--color-gray);
+  --color-ink: var(--color-ink);
+  --color-on-ink: var(--color-on-ink);
+  --color-chat: var(--color-chat);
+  --color-bubble: var(--color-bubble);
+
+  --shadow-phone: 0 30px 60px -20px rgba(22, 17, 43, 0.45);
+
+  --animate-question: question-in 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
 
   --font-sans: var(--font-avenir), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
@@ -77,6 +93,26 @@ body {
 /* Títulos: Gilroy en mayúscula */
 h1, h2, h3, .font-display {
   text-transform: uppercase;
+}
+
+@keyframes question-in {
+  from {
+    opacity: 0;
+    transform: translateY(40%) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-question {
+    animation: none;
+  }
 }
 
 /* Wordmark "clubio" — SOLO Povlar, siempre en minúscula */

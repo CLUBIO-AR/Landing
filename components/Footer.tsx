@@ -1,8 +1,10 @@
 import { Logo } from "./Logo";
 
 const LINKS = [
-  { id: "como-funciona", label: "Cómo funciona" },
+  { id: "para-quien", label: "Para quién es" },
+  { id: "funciones", label: "Funciones" },
   { id: "planes", label: "Planes" },
+  { id: "preguntas", label: "Preguntas" },
   { id: "demo", label: "Contacto" },
 ];
 
@@ -74,7 +76,7 @@ export function Footer() {
 
       <div className="border-t border-border">
         <p className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 text-xs text-gray">
-          © 2026 CLUBIO · Sistema de gestión para gimnasios
+          © 2026 CLUBIO. Cobro de cuotas para gimnasios, profes, escuelas y clubes.
         </p>
       </div>
     </footer>
