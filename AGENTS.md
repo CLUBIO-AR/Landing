@@ -8,7 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 > Leer al inicio de cada sesión de trabajo y antes de ejecutar /review.
 
 ## Descripción
-Landing page de CLUBIO. Objetivo: convertir visitas en leads (gyms interesados en el producto).
+Landing page de CLUBIO. Objetivo: convertir visitas en leads. Público: cualquiera que cobre cuotas (gimnasios, profes, escuelas/academias, clubes), no solo gyms.
 Incluye información de planes, formulario de contacto y flujo hacia el onboarding del gym.
 
 ## Stack
@@ -22,13 +22,15 @@ Los precios y planes mostrados en la landing DEBEN ser consistentes con el produ
 - **Multi**: USD 75/mes — 5 sedes, 10 admins
 - **WhatsApp**: add-on +USD 8/mes, disponible en todos los planes
 - Plan 'plus' ELIMINADO junio 2026 — NO debe aparecer en ningún lugar
-- Plan 'Pro' NO EXISTE todavía — si aparece en UI debe quedar como "Próximamente" sin precio
+- Plan 'Pro' NO EXISTE todavía — OCULTO en la landing (oct 2026), no debe aparecer
+- PRECIOS OCULTOS en la landing (oct 2026): se muestran los planes y sus features, sin precios.
+  El precio se pasa en la demo. Los valores de arriba son la referencia interna.
 - Sin setup fee en ningún plan
 - Alumnos ILIMITADOS en todos los planes
 
 ## Flujos críticos
 1. **Captación de lead**: visitante completa formulario → POST a `{CLUBIO_API_URL}/api/leads` → Clubio procesa el lead
-2. **Información de planes**: visitante ve precios y features → decide contactar
+2. **Información de planes**: visitante ve planes y features (sin precios) → pide la demo para conocer el precio
 
 ## Reglas de negocio invariantes
 - Ningún precio o feature mostrado puede contradecir lo que el producto realmente ofrece
@@ -54,3 +56,8 @@ Esta es la primera impresión del producto. Core Web Vitals críticos:
 
 ## Reportes de revisión
 `.claude/reports/review-[YYYY-MM-DD]-[HH-MM].md`
+
+## Videos demo
+Los videos de cada función van en `public/demos/` (`avisos.mp4`, `estado-de-cuenta.mp4`, `bot-consultas.mp4`).
+`components/Funciones.tsx` muestra el video si el archivo existe; si no, un chat de ejemplo.
+Los .mp4 tienen caché inmutable de 1 año: para reemplazar un video, usar un nombre nuevo y actualizar la ruta.

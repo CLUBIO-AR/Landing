@@ -21,9 +21,8 @@ export function DemoVideo() {
     <section id="demo-video" className="bg-dark py-16 md:py-24">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
         <SectionHeading
-          badge="Demo"
-          title="Mira cómo Clubio automatiza tus cobros"
-          subtitle="Desde la cuota generada hasta el pago confirmado — todo automático."
+          title="Y vos lo ves todo desde tu panel"
+          subtitle="Quién pagó, quién debe y cuánto cobraste este mes, actualizado en tiempo real."
         />
 
         <div className="relative rounded-card overflow-hidden border border-border shadow-card bg-card">
@@ -43,7 +42,7 @@ export function DemoVideo() {
             <button
               onClick={handlePlay}
               className="absolute inset-0 flex items-center justify-center group"
-              aria-label="Reproducir demo"
+              aria-label="Reproducir demo del panel"
             >
               <div className="w-20 h-20 rounded-full bg-green flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-200">
                 <Play size={32} className="text-dark fill-dark ml-1" />

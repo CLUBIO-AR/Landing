@@ -7,9 +7,10 @@ import { Button } from "./ui/Button";
 import { scrollToSection } from "@/lib/scrollToSection";
 
 const LINKS = [
-  { id: "como-funciona", label: "Cómo funciona" },
+  { id: "para-quien", label: "Para quién es" },
+  { id: "funciones", label: "Funciones" },
   { id: "planes", label: "Planes" },
-  { id: "demo", label: "Contacto" },
+  { id: "preguntas", label: "Preguntas" },
 ];
 
 export function Navbar() {

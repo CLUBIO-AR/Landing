@@ -5,8 +5,8 @@
 ## Archivos clave
 
 ### Entrada y layout
-- `app/layout.tsx` — RootLayout: fuentes Geist via `next/font`, metadata completa con OG/Twitter, Schema.org JSON-LD hardcodeado (estático para evitar XSS vía `dangerouslySetInnerHTML`)
-- `app/page.tsx` — Única página: ensambla Navbar + 6 secciones + Footer. Todos Server Components salvo los que tienen estado.
+- `app/layout.tsx` — RootLayout: fuentes via `next/font`, metadata completa con OG/Twitter, Schema.org JSON-LD hardcodeado sin precios (estático para evitar XSS vía `dangerouslySetInnerHTML`)
+- `app/page.tsx` — Única página: Navbar + Hero, ParaQuien, Problema, Funciones, ComoFunciona, DemoVideo, Diferenciadores, Planes, Preguntas, FormDemo + Footer. Todos Server Components salvo los que tienen estado.
 - `next.config.ts` — Headers de seguridad (CSP, X-Frame-Options, etc.), caché inmutable para assets estáticos, compresión habilitada.
 
 ### Componentes — Client
@@ -14,8 +14,10 @@
 - `components/FormDemo.tsx` — Client Component. Formulario de captación de leads: estado controlado, validación client-side, honeypot anti-spam, `submittingRef` para evitar doble submit, POST a `NEXT_PUBLIC_CLUBIO_API_URL/api/leads`.
 
 ### Componentes — Server
-- `components/Hero.tsx` — Server Component. Headline principal + mockup de dashboard estático + pills de features.
-- `components/Planes.tsx` — Server Component. Grid de planes desde array PLANS local. Add-on WhatsApp en banner separado. Plan Pro renderiza con `comingSoon: true` → badge "Próximamente" + precio oculto.
+- `components/Hero.tsx` — Server Component. Pregunta rotativa (`RotatingQuestion`, client) + headline + celular con chat de WhatsApp (`Phone`/`ChatMockup`).
+- `components/Funciones.tsx` — Server Component. Avisos, estado de cuenta y bot; muestra el video de `public/demos/` si existe en el build, si no el chat de ejemplo (`components/chats.ts`).
+- `components/Preguntas.tsx` — Server Component. FAQ con `<details>` nativo.
+- `components/Planes.tsx` — Server Component. Basic y Multi sin precios + tarjeta del módulo WhatsApp. CTA "Consultar precio" → formulario. Pro oculto.
 
 ### UI primitivos
 - `components/ui/Button.tsx` — Polimórfico: si recibe `href` renderiza `<a>`, si no renderiza `<button>`. Variantes: primary, outline, ghost.
@@ -33,7 +35,7 @@
 ## Patrones
 
 ### Captación de leads
-`FormDemo` hace `fetch` directo al browser contra `NEXT_PUBLIC_CLUBIO_API_URL/api/leads`. No hay API Route interna — la landing es un proxy cero; el payload va directo a la Clubio API. Campos enviados: `nombre`, `email`, `telefono`, `gym_nombre`, `cantidad_alumnos`, `como_nos_conocio`. El campo `website` es honeypot (posición absolute offscreen, tabIndex -1).
+`FormDemo` hace `fetch` directo al browser contra `NEXT_PUBLIC_CLUBIO_API_URL/api/leads`. No hay API Route interna — la landing es un proxy cero; el payload va directo a la Clubio API. Campos enviados: `nombre`, `email`, `telefono`, `gym_nombre`, `cantidad_alumnos`, `como_nos_conocio`. El rubro ("¿A qué te dedicás?") viaja dentro de `gym_nombre` como `Nombre (Rubro)` porque la API todavía no tiene ese campo. El campo `website` es honeypot (posición absolute offscreen, tabIndex -1).
 
 ### Navegación
 Sin `<Link>` de Next.js — la landing es de una sola página. La Navbar usa `scrollToSection(id)` para scroll suave. Los `Button` con `href="#section-id"` hacen anchor nativo (sin JS); los botones de Navbar llaman `scrollToSection` explícitamente.
@@ -62,7 +64,8 @@ Los planes viven en el array `PLANS` dentro de `components/Planes.tsx`. No hay C
 ## Trabajo en curso
 
 ### En desarrollo
-- **Plan Pro**: existe en el array `PLANS` con `comingSoon: true` y `price: null`. Renderiza como "Próximamente" sin precio. No lanzado aún.
+- **Plan Pro**: oculto en la landing hasta su lanzamiento.
+- **Campo `rubro` en leads**: pendiente en la API de Clubio; hoy va concatenado en `gym_nombre`.
 
 ### Deuda técnica conocida
 - Sin rate limiting server-side: el honeypot es la única defensa anti-spam. Un atacante que ignore el campo honeypot puede spamear la Clubio API directamente.

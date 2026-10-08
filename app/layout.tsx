@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s | CLUBIO",
   },
   description:
-    "Sistema de cobros automáticos para gimnasios en Argentina. Cuotas automáticas, avisos por WhatsApp y email, pago sin cuenta con MercadoPago. Sin setup fee. Alumnos ilimitados.",
+    "Sistema de cobro de cuotas para gimnasios, profes, escuelas y clubes en Argentina. Avisos por WhatsApp con botón de pago, bot de consultas y estado de cuenta. Cobrá con MercadoPago o por transferencia. Alumnos ilimitados.",
 
   keywords: [
     "software para gimnasios",
@@ -59,6 +59,10 @@ export const metadata: Metadata = {
     "MercadoPago gimnasio",
     "cobro cuotas automático",
     "gestión alumnos gimnasio",
+    "cobro de cuotas escuela de danza",
+    "cobro de cuotas para profes",
+    "sistema de cuotas para clubes",
+    "bot de WhatsApp para gimnasios",
     "CLUBIO",
   ],
 
@@ -78,13 +82,13 @@ export const metadata: Metadata = {
     siteName: "CLUBIO",
     title: "CLUBIO — Tus cuotas se cobran solas",
     description:
-      "Sistema de cobros automáticos para gimnasios en Argentina. Cuotas automáticas, avisos por WhatsApp, pago sin cuenta con MercadoPago.",
+      "Cobro de cuotas para gimnasios, profes, escuelas y clubes. Avisos por WhatsApp, bot de consultas y pago con MercadoPago o transferencia.",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "CLUBIO — Tus cuotas se cobran solas",
-    description: "Sistema de cobros automáticos para gimnasios en Argentina.",
+    description: "Cobro de cuotas para gimnasios, profes, escuelas y clubes. Avisos por WhatsApp, bot de consultas y pago con MercadoPago o transferencia.",
   },
 
   icons: {
@@ -118,33 +122,7 @@ const softwareApplicationSchema = {
   operatingSystem: "Web",
   url: "https://clubio.com.ar",
   description:
-    "Sistema de cobros automáticos para gimnasios en Argentina. Cuotas automáticas, avisos por WhatsApp, pago con MercadoPago sin cuenta.",
-  offers: [
-    {
-      "@type": "Offer",
-      name: "Plan Basic",
-      price: "28",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "28",
-        priceCurrency: "USD",
-        unitText: "MONTH",
-      },
-    },
-    {
-      "@type": "Offer",
-      name: "Plan Multi",
-      price: "75",
-      priceCurrency: "USD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: "75",
-        priceCurrency: "USD",
-        unitText: "MONTH",
-      },
-    },
-  ],
+    "Cobro de cuotas para gimnasios, profes, escuelas y clubes. Avisos por WhatsApp, bot de consultas y pago con MercadoPago o transferencia.",
   provider: {
     "@type": "Organization",
     name: "CLUBIO",
