@@ -4,7 +4,7 @@ import { SectionHeading } from "./ui/SectionHeading";
 const FAQ = [
   {
     q: "¿Mis alumnos tienen que descargar una app o crear una cuenta?",
-    a: "No. Les llega un mensaje por WhatsApp o email con el botón para pagar, y pagan con MercadoPago sin registrarse en nada.",
+    a: "No. Les llega un mensaje por WhatsApp o email con el link de pago, y pagan con MercadoPago sin registrarse en nada. Si cobrás por transferencia, el mensaje trae tu alias.",
   },
   {
     q: "¿Puedo seguir cobrando por transferencia?",

@@ -35,9 +35,9 @@ const PLANS: Plan[] = [
 ];
 
 const WHATSAPP_FEATURES = [
-  "Avisos de cuota con botón de pago",
-  "Estado de cuenta por DNI",
-  "Bot que responde consultas",
+  "Avisos de cuota con link de pago o alias",
+  "Estado de cuenta para cada alumno",
+  "Bot de consultas y clase de prueba",
   "Desde el número de WhatsApp de tu negocio",
 ];
 

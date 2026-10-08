@@ -7,7 +7,7 @@ const STEPS = [
   },
   {
     title: "Le llega el aviso",
-    description: "Por WhatsApp o email antes del vencimiento, con el botón para pagar.",
+    description: "Por WhatsApp o email antes del vencimiento, con el link de pago o tu alias.",
   },
   {
     title: "Paga como prefiera",

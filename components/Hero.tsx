@@ -15,7 +15,7 @@ export function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-lt leading-relaxed max-w-xl">
-            Le avisa a cada alumno por WhatsApp cuándo vence su cuota, le manda el botón para pagar
+            Le avisa a cada alumno por WhatsApp cuándo vence su cuota, le manda cómo pagarla
             y te muestra quién pagó. Sin perseguir a nadie y sin planillas.
           </p>
 
