@@ -141,7 +141,7 @@ export function Cotizador({ inicial }: { inicial: ConfigCotizador }) {
           <p className="font-display text-4xl sm:text-5xl text-lime">{rango(r.totalMin, r.totalMax)}</p>
           <p className="text-sm text-[#B6AAD6]">
             {r.cobrado > 0 ? `${pct(r.totalMin / r.cobrado)}${r.totalMax !== r.totalMin ? ` a ${pct(r.totalMax / r.cobrado)}` : ""} de lo que cobrás. ` : ""}
-            El abono de CLUBIO es + IVA.
+            Precios de CLUBIO finales, sin IVA aparte.
           </p>
           {r.waAConsultar && (
             <p className="text-sm bg-lime text-lime-text rounded-btn px-3 py-2 mt-1">
@@ -154,8 +154,8 @@ export function Cotizador({ inicial }: { inicial: ConfigCotizador }) {
 
         <Pago
           a="A CLUBIO"
-          como="Abono mensual. Te lo facturamos nosotros."
-          monto={`${pesos(r.clubio)} + IVA`}
+          como="Abono mensual, precio final. Te lo facturamos nosotros (factura C)."
+          monto={pesos(r.clubio)}
           lineas={[
             [`Plan ${r.plan.nombre}`, pesos(r.plan.precio)],
             ...(c.wa === "avisos" ? [["WhatsApp: avisos desde el número de CLUBIO (mensajes incluidos)", r.precioWa === null ? "a consultar" : pesos(r.precioWa)] as [string, string]] : []),

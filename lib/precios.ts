@@ -1,5 +1,5 @@
 // Precios y tarifas que usa el cotizador (/cotizador). Fuente única: cambiá acá y se
-// actualiza la página. Precios de CLUBIO en pesos, + IVA. Tarifas de terceros con IVA.
+// actualiza la página. Precios de CLUBIO en pesos, finales (monotributo: sin IVA aparte). Tarifas de terceros con IVA.
 
 export const IVA = 0.21;
 
