@@ -27,6 +27,7 @@ Los precios y planes mostrados en la landing DEBEN ser consistentes con el produ
   El precio se pasa en la demo. Los valores de arriba son la referencia interna.
 - Sin setup fee en ningún plan
 - Alumnos ILIMITADOS en todos los planes
+- Precios en pesos (oct 2026): `lib/precios.ts`, usados solo por el cotizador oculto `/cotizador` (noindex, sin links). No mostrarlos en la landing pública.
 
 ## Flujos críticos
 1. **Captación de lead**: visitante completa formulario → POST a `{CLUBIO_API_URL}/api/leads` → Clubio procesa el lead

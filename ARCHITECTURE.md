@@ -23,7 +23,11 @@
 - `components/ui/Button.tsx` — Polimórfico: si recibe `href` renderiza `<a>`, si no renderiza `<button>`. Variantes: primary, outline, ghost.
 - `components/ui/Card.tsx`, `Badge.tsx`, `SectionHeading.tsx` — UI stateless, sin lógica.
 
+### Página oculta
+- `app/cotizador/page.tsx` + `components/Cotizador.tsx` — cotizador interno (noindex, fuera del sitemap y sin links). El gym elige plan, forma de cobro y WhatsApp; muestra el total por mes y a quién se le paga cada parte (CLUBIO, Mercado Pago/Cresium, Meta). La configuración viaja en la URL (`?gym=&plan=&alumnos=&cuota=&cobro=&wa=&pruebas=`) para compartirla.
+
 ### Lib
+- `lib/precios.ts` — precios en pesos de CLUBIO y tarifas de terceros que usa el cotizador. Fuente única: cambiar acá.
 - `lib/scrollToSection.ts` — Smooth scroll con offset de 80px para compensar navbar fija.
 
 ### SEO / metadata
