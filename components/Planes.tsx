@@ -34,11 +34,31 @@ const PLANS: Plan[] = [
   },
 ];
 
-const WHATSAPP_FEATURES = [
-  "Avisos de cuota con link de pago o alias",
-  "Estado de cuenta para cada alumno",
-  "Bot de consultas y clase de prueba",
-  "Desde el número de WhatsApp de tu negocio",
+// Dos formas de sumar WhatsApp. Sin precios (se pasan en la demo). No nombrar al
+// proveedor de cobros: puede cambiar. Lo de Meta sí se aclara, porque lo paga el negocio.
+const WHATSAPP_OPCIONES = [
+  {
+    nombre: "Avisos por WhatsApp",
+    tagline: "Desde el número de CLUBIO. Sin trámites: lo activás y listo.",
+    features: [
+      "Hasta 3 avisos por cuota: antes, el día del vencimiento y después",
+      "Cada aviso con el link de pago o el alias para transferir",
+      "Los mensajes ya están incluidos en el precio",
+    ],
+    nota: "Ideal si querés avisar por WhatsApp sin configurar nada.",
+  },
+  {
+    nombre: "WhatsApp con bot",
+    tagline: "Desde el número de tu negocio. Lo configuramos nosotros.",
+    features: [
+      "Los mismos avisos, más la confirmación cuando pagan",
+      "Bot que responde horarios, precios y reserva clases de prueba",
+      "Estado de cuenta: el alumno pregunta cuánto debe y le llega al instante",
+      "Recibe comprobantes de transferencia para que los revises",
+      "Todos los chats en tu panel, con aviso solo cuando hace falta una persona",
+    ],
+    nota: "Los avisos que manda tu número los cobra Meta (Facebook) aparte, a la tarjeta de tu cuenta de WhatsApp Business. Las respuestas del bot son gratis.",
+  },
 ];
 
 export function Planes() {
@@ -50,7 +70,7 @@ export function Planes() {
           subtitle="Sin setup fee y sin contrato. Te pasamos el precio para tu caso en la demo."
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {PLANS.map((plan) => (
             <div
               key={plan.name}
@@ -76,29 +96,41 @@ export function Planes() {
             </div>
           ))}
 
-          <div className="flex flex-col gap-6 rounded-card bg-green p-7 text-on-ink">
-            <div className="flex flex-col gap-2">
-              <MessageCircle size={28} className="text-lime" aria-hidden="true" />
-              <h3 className="font-display text-3xl">Módulo WhatsApp</h3>
-              <p className="text-base text-on-ink/80">Se suma a cualquier plan.</p>
-            </div>
+        </div>
 
-            <ul className="flex flex-col gap-3 flex-1">
-              {WHATSAPP_FEATURES.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-base">
-                  <Check size={18} className="text-lime shrink-0 mt-0.5" aria-hidden="true" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href="#demo"
-              className="inline-flex w-full items-center justify-center rounded-btn bg-lime px-6 py-3 font-semibold text-lime-text transition-colors hover:bg-[#c6f01f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime"
-            >
-              Consultar precio
-            </a>
+        <div id="whatsapp" className="flex flex-col gap-6 rounded-card bg-green p-6 sm:p-8 text-on-ink scroll-mt-24">
+          <div className="flex flex-col gap-2 max-w-2xl">
+            <MessageCircle size={28} className="text-lime" aria-hidden="true" />
+            <h3 className="font-display text-3xl">Sumá WhatsApp a cualquier plan</h3>
+            <p className="text-base text-on-ink/80">Elegí cómo: solo avisos, o avisos más un bot que atiende por vos.</p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {WHATSAPP_OPCIONES.map((op) => (
+              <div key={op.nombre} className="flex flex-col gap-4 rounded-card bg-on-ink/10 border border-on-ink/20 p-6">
+                <div className="flex flex-col gap-1">
+                  <h4 className="font-display text-2xl">{op.nombre}</h4>
+                  <p className="text-base text-on-ink/80">{op.tagline}</p>
+                </div>
+                <ul className="flex flex-col gap-3 flex-1">
+                  {op.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-base">
+                      <Check size={18} className="text-lime shrink-0 mt-0.5" aria-hidden="true" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-sm text-on-ink/80 border-t border-on-ink/20 pt-3">{op.nota}</p>
+              </div>
+            ))}
+          </div>
+
+          <a
+            href="#demo"
+            className="inline-flex w-full sm:w-auto sm:self-start items-center justify-center rounded-btn bg-lime px-6 py-3 font-semibold text-lime-text transition-colors hover:bg-[#c6f01f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime"
+          >
+            Consultar precio
+          </a>
         </div>
       </div>
     </section>

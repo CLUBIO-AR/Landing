@@ -15,12 +15,24 @@ const FAQ = [
     a: "No. Los pagos van directo a tu cuenta de MercadoPago o a tu cuenta bancaria. CLUBIO solo registra que se pagó.",
   },
   {
+    q: "¿Qué diferencia hay entre los avisos por WhatsApp y el bot?",
+    a: "Con los avisos, los mensajes salen desde el número de CLUBIO: no tenés que configurar nada. Con el bot, todo sale desde el número de tu negocio y además responde consultas, muestra el estado de cuenta, reserva clases de prueba y recibe comprobantes. Vos ves todos los chats en tu panel.",
+  },
+  {
+    q: "¿WhatsApp tiene costos aparte?",
+    a: "Con los avisos desde el número de CLUBIO, no: los mensajes están incluidos. Con el bot y tu propio número, Meta (Facebook) cobra cada aviso que manda tu número, a la tarjeta que cargues en tu cuenta de WhatsApp Business. Las respuestas del bot cuando un alumno te escribe son gratis.",
+  },
+  {
+    q: "¿Quién configura el número de WhatsApp?",
+    a: "Nosotros. Te guiamos para verificar tu negocio en Meta y dejamos el número conectado con CLUBIO. La configuración está incluida.",
+  },
+  {
     q: "¿Sirve si soy profe y trabajo solo?",
     a: "Sí. CLUBIO sirve para cualquiera que cobre una cuota todos los meses, tengas 15 alumnos o 500.",
   },
   {
     q: "¿Por qué no veo los precios?",
-    a: "Depende de cuántas sedes tengas y si sumás el módulo de WhatsApp. En la demo te pasamos el precio exacto para tu caso. No hay setup fee ni contrato.",
+    a: "Depende de cuántas sedes tengas, cuántos alumnos y si sumás WhatsApp. En la demo te pasamos el precio exacto para tu caso. No hay setup fee ni contrato.",
   },
   {
     q: "¿Cuánto tardo en empezar?",
