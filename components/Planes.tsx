@@ -74,10 +74,10 @@ export function Planes() {
           {PLANS.map((plan) => (
             <div
               key={plan.name}
-              className="flex flex-col gap-6 rounded-card border border-border bg-card p-7"
+              className="group flex flex-col gap-6 rounded-card border border-border bg-card p-7 shadow-card transition-all duration-200 motion-reduce:transition-none hover:-translate-y-1 hover:border-green hover:shadow-card-hover focus-within:-translate-y-1 focus-within:border-green focus-within:shadow-card-hover motion-reduce:hover:translate-y-0 motion-reduce:focus-within:translate-y-0"
             >
               <div className="flex flex-col gap-2">
-                <h3 className="font-display text-3xl">{plan.name}</h3>
+                <h3 className="font-display text-3xl transition-colors group-hover:text-green group-focus-within:text-green">{plan.name}</h3>
                 <p className="text-base text-gray-lt">{plan.tagline}</p>
               </div>
 
@@ -90,7 +90,11 @@ export function Planes() {
                 ))}
               </ul>
 
-              <Button variant="outline" className="w-full justify-center" href="#demo">
+              <Button
+                variant="outline"
+                className="w-full justify-center group-hover:bg-green group-hover:text-dark group-focus-within:bg-green group-focus-within:text-dark"
+                href="#demo"
+              >
                 Consultar precio
               </Button>
             </div>
@@ -107,7 +111,11 @@ export function Planes() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {WHATSAPP_OPCIONES.map((op) => (
-              <div key={op.nombre} className="flex flex-col gap-4 rounded-card bg-on-ink/10 border border-on-ink/20 p-6">
+              <div
+                key={op.nombre}
+                tabIndex={0}
+                className="flex flex-col gap-4 rounded-card bg-on-ink/10 border border-on-ink/20 p-6 transition-all duration-200 motion-reduce:transition-none hover:-translate-y-1 hover:bg-on-ink/15 hover:border-lime focus-visible:outline-none focus:-translate-y-1 focus:bg-on-ink/15 focus:border-lime motion-reduce:hover:translate-y-0 motion-reduce:focus:translate-y-0"
+              >
                 <div className="flex flex-col gap-1">
                   <h4 className="font-display text-2xl">{op.nombre}</h4>
                   <p className="text-base text-on-ink/80">{op.tagline}</p>
